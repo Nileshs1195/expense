@@ -28,33 +28,39 @@ public class CategoryController
 	@Autowired
 	CategoryServiceImpl categoryServiceImpl;
 	
+	/**
+	 * Method used to add Category 
+	 * @param Category
+	 * @return status string
+	 */
 	@PostMapping("/addcategory")
 	public ResponseEntity<String> addCategory(@RequestBody Category category)
 	{	
 		return new ResponseEntity<String>(categoryServiceImpl.addCategory(category),HttpStatus.OK);
 	} 
 	
+	/**
+	 * Method used to get CategoryType 
+	 * @param categoryId and categoryName
+	 * @return Category Details (Category Object)
+	 */
 	@PostMapping("/categoryType")
 	public Optional<Category> getCategoryByIdAndName(@RequestBody Category category)
 	{
 		Integer id=category.getCategoryId();
 		String name=category.getCategoryName();
 		return categoryService.getCategoryByIdAndName(id,name);
-		
 	}
 	
-//	@GetMapping("/categorylist")
-//	public ResponseEntity<List<Category>> getCategoryList()
-//	{
-//		return new ResponseEntity<List<Category>>(categoryService.getCategoryList(),HttpStatus.OK);
-//	}
-//	
-//	
-//	
-//	//@GetMapping("/categoryId")
-//	@GetMapping("/categorylist/{id}")
-//	public ResponseEntity<Category> getCategoryById(@PathVariable Integer id)
-//	{
-//		return new ResponseEntity<Category>(categoryService.getCategoryById(id),HttpStatus.OK);
-//	}
+	@GetMapping("/categorylist")
+	public ResponseEntity<List<Category>> getCategoryList()
+	{
+		return new ResponseEntity<List<Category>>(categoryService.getCategoryList(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/categorylist/{id}")
+	public ResponseEntity<Category> getCategoryById(@PathVariable Integer id)
+	{
+		return new ResponseEntity<Category>(categoryService.getCategoryById(id),HttpStatus.OK);
+	}
 }

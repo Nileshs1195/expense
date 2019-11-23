@@ -27,6 +27,11 @@ public class UserController
 	@Autowired
 	private IUserService userService;
 	
+	/**
+	 * Method used for user registration
+	 * @param user
+	 * @return status string
+	 */
 	@PostMapping("/register")
 	public ResponseEntity<String> registerUser(@RequestBody User user)
 	{
@@ -40,6 +45,11 @@ public class UserController
 		}
 	}
 	
+	/**
+	 * Method used for login user
+	 * @param user
+	 * @return User Details (Entire Object)
+	 */
 	@GetMapping("/loginuser")
 	public User loginUser(@RequestBody User user)
 	{
@@ -60,6 +70,4 @@ public class UserController
 		return userService.usersList();
 	}
 	
-
-
 }
