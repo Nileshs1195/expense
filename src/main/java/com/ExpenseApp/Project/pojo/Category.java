@@ -16,8 +16,11 @@ public class Category {
 	private String categoryName;
 	private String categoryDesc;
 	
-	 						/* One to Many Mapping from category to Expenses */
-	
+	 						
+	/**
+	 * @OneToMany 
+	 * Mapping from one category to Multiple Expenses
+	 */
 	@OneToMany(mappedBy = "category",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Expense> expense;
 	public List<Expense> getExpense()

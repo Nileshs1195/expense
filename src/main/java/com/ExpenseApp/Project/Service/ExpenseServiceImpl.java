@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ExpenseApp.Project.CustomException.ExpenseNotFoundException;
 import com.ExpenseApp.Project.Dao.IExpenseDao;
 import com.ExpenseApp.Project.pojo.Expense;
 
@@ -22,7 +23,13 @@ public class ExpenseServiceImpl implements IExpenseService
 
 	@Override
 	public Expense getExpense(int expenseid) {
-		return expenseDao.getExpense(expenseid);
+		Expense expenseData=expenseDao.getExpense(expenseid);
+		
+		if(expenseData==null)
+		{
+			throw new ExpenseNotFoundException("");
+		}
+		return expenseData;
 
 	}
 
@@ -37,4 +44,9 @@ public class ExpenseServiceImpl implements IExpenseService
 	public List<Object> getMonthlyExpense() {
 		return expenseDao.getMonthlyExpense();
 	}
+
+//	@Override
+//	public List<Object> getUsersMonthlyExpense(Integer id) {
+//		return expenseDao.getUsersMonthlyExpense(id);
+//	}
 }

@@ -1,8 +1,10 @@
 package com.ExpenseApp.Project.pojo;
 
 import java.util.*;
-
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -13,12 +15,25 @@ public class User
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userid;
+	
+	@NotEmpty(message="username can't be empty")
 	private String username;
+	
+	@Email
+	@NotEmpty(message="username can't be empty")
 	private String email;
+	
+	@NotEmpty(message="Password can't be empty")
 	private String password;
+
+	@NotEmpty(message="Password can't be empty")
 	private String confirmPassword;
 	
-						/* OneToMany Mapping from one User to multiple Expenses */
+						
+	/**
+	 * @OneToMany
+	 * Mapping from one User to multiple Expenses
+	 */
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	//@JsonIgnore

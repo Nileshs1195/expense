@@ -13,5 +13,7 @@ public interface IExpenseDao
 	List<Expense> getExpenseList(Expense expense);
 
 	List<Object> getMonthlyExpense();
+
+	//List<Object> getUsersMonthlyExpense(Integer id);
 	
 }

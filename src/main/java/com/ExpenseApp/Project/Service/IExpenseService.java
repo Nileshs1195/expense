@@ -16,5 +16,7 @@ public interface IExpenseService
 
 	public List<Object> getMonthlyExpense();
 
+	//public List<Object> getUsersMonthlyExpense(Integer id);
+
 	
 }

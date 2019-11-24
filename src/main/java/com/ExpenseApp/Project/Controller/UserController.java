@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ExpenseApp.Project.CustomException.UserNotFoundException;
 import com.ExpenseApp.Project.Service.IUserService;
 import com.ExpenseApp.Project.pojo.User;
 
@@ -29,33 +30,45 @@ public class UserController
 	
 	/**
 	 * Method used for user registration
-	 * @param user
+	 * @param user details (user object)
 	 * @return status string
 	 */
 	@PostMapping("/register")
 	public ResponseEntity<String> registerUser(@RequestBody User user)
 	{
+		try 
+		{		
 		if(user.getPassword().equals(user.getConfirmPassword()))
 		{
 			return new ResponseEntity<String>(userService.registerUser(user),HttpStatus.OK);
 		}
-		else
+		return new ResponseEntity<String>("password dosen't match",HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		catch(Exception e)
 		{
-			return new ResponseEntity<String>("password dosen't match",HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<String>("Registeration failed", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
 	/**
 	 * Method used for login user
-	 * @param user
+	 * @param String emailId and password
 	 * @return User Details (Entire Object)
 	 */
 	@GetMapping("/loginuser")
 	public User loginUser(@RequestBody User user)
 	{
 		String email=user.getEmail();
-		String Password=user.getPassword();
-		return userService.loginUser(email,Password);
+		String password=user.getPassword();
+		try
+		{
+		User userData=userService.loginUser(email,password);
+		return userData;
+		}
+		catch(Exception e)
+		{
+			throw new UserNotFoundException("");
+		}
 	}
 	
 	/**

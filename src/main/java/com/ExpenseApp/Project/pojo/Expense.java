@@ -19,8 +19,10 @@ public class Expense
 	@Temporal(TemporalType.DATE)
 	private Date expensedate;
 	
-	/* ManyToOne Mapping from Multiple Expenses to one user */
-
+	/**
+	 * @ManyToOne 
+	 * Mapping from Multiple Expenses to one user 
+	 */
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "userid")
 	@JsonIgnore
@@ -34,8 +36,11 @@ public class Expense
 		this.user = user;
 	}
 	
-	/* ManyToOne Mapping from Multiple Expenses to one category */
-	
+	/**
+	 * @ManyToOne  
+	 * Mapping from Multiple Expenses to one category 
+	 * 
+	 */
 	@ManyToOne(cascade = CascadeType.ALL) 
 	@JoinColumn(name = "categoryId")
 	@JsonIgnore
@@ -88,9 +93,7 @@ public class Expense
 	public String toString() {
 		return "Expense [expense_id=" + expense_id + ", expense_type=" + expense_type + ", expense_amount="
 				+ expense_amount + ", expensedate=" + expensedate + "]";
-	}
-	
-	
+	}	
 	
 }
 	
