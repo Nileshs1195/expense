@@ -40,7 +40,6 @@ public class CategoryServiceImpl implements ICategoryService
 	{
 		Optional<Category> categoryData=categoryRepository.findByCategoryId(cid);
 		
-		
 		return categoryData;
 	}
 	
