@@ -14,12 +14,8 @@ import com.ExpenseApp.Project.dto.CategoryDto;
 import com.ExpenseApp.Project.pojo.Category;
 
 @Service
-//public class CategoryServiceImpl 
 public class CategoryServiceImpl implements ICategoryService
 {
-	@Autowired
-	ICategoryDao categoryDao;
-	
 	@Autowired
 	private CategoryRepository categoryRepository;
 	
@@ -35,27 +31,21 @@ public class CategoryServiceImpl implements ICategoryService
 		 return categoryName+ " Category Added in Stock";
 	}
 	
-	public Optional<Category> getCategoryByIdAndName(Integer id, String name)
-	{
-		return categoryRepository.findByCategoryIdAndCategoryName(id,name);
-	}
-	
-	
-	@Override
 	public List<Category> getCategoryList() 
 	{	
 		return categoryRepository.findAll();
 	}
 	
-	@Override
 	public Optional<Category> getCategoryById(int cid)
 	{
 		Optional<Category> categoryData=categoryRepository.findByCategoryId(cid);
 		
-		if(categoryData==null)
-		{
-			throw new CategoryNotFoundException("Category Not In Stock");
-		}
+		
 		return categoryData;
+	}
+	
+	public Optional<Category> getCategoryByIdAndName(Integer id, String name)
+	{
+		return categoryRepository.findByCategoryIdAndCategoryName(id,name);
 	}
 }

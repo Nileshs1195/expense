@@ -42,26 +42,39 @@ public class ExpenseDaoImpl implements IExpenseDao
 	}
 	
 	@Override
-	public List<Object> getMonthlyExpense() {
-		String jpql="select sum(e.expense_amount) from Expense e group by userid";
-//		String jpql="select a.expense_id, a.expense_amount from expense a, expense b " + 
-//				"where a.userid=b.userid group by expense_id"; 
-	return entityManager.createQuery(jpql,Object.class).getResultList();
+	public List<Object> getMonthlyExpense() 
+	{
+		
+		//String jpql="select e.userid,e.expense_amount,e.expensedate from expense e ";
+		String jpql="select e.expense_amount from Expense e ";
+		return entityManager.createQuery(jpql,Object.class).getResultList();
 	
 	}
 
-//public List<Object> getUsersMonthlyExpense(Integer id)
-//{
-//	String jpql="select sum(e.expense_amount) from Expense e wehere e.userid=:cid group by userid";
-//
-////				String jpql="select a.userid,a.expense_id, a.expense_amount from expense a, expense b"   
-////				+"where a.userid=b.userid and a.userid=:cid group by expense_id";
-////				
-//				return entityManager.createQuery(jpql,Object.class).setParameter("cid",id).getResultList();
-//				
-////				select a.userid,a.expense_id, a.expense_amount from expense a, expense b   
-////				where a.userid=b.userid and a.userid=101 group by expense_id;
-//}
+	
+	
+	
+public List<Object> getUsersMonthlyExpense(Integer id)
+{
+				String jpql="select e.expense_amount from Expense e where userid=:cid";
+				//String jpql="select userid,e.expense_amount from Expense e where userid=:cid group by userid";
+				return entityManager.createQuery(jpql,Object.class).setParameter("cid",id).getResultList();
+
+				
+	/*			String jpql="select a.userid,a.expense_id, a.expense_amount from expense a, expense b"   
+				+"where a.userid=b.userid and a.userid=:cid group by expense_id";
+
+				select a.userid,a.expense_id, a.expense_amount from expense a, expense b   
+				where a.userid=b.userid and a.userid=101 group by expense_id;
+	*/
+}
+	
+	
+	
+	
+	
+	
+	
 	
 //	@Override
 //	public List<Object> getMonthlyExpense() {

@@ -29,8 +29,6 @@ public class CategoryController
 	@Autowired
 	ICategoryService categoryService;
 	
-	@Autowired
-	CategoryServiceImpl categoryServiceImpl;
 	
 	/**
 	 * Method used to add Category 
@@ -67,12 +65,16 @@ public class CategoryController
 		try
 		{
 		Optional<Category> categoryData=categoryService.getCategoryById(id);
+		if(categoryData==null)
+		{
+			throw new CategoryNotFoundException("Category Not In Stock");
+		}
 		return categoryData;
 		}
 		
 		catch (Exception e) 
 		{
-			throw new CategoryNotFoundException("Category Not In Stock");
+			throw new CategoryNotFoundException("Category Not Found");
 		}
 	}
 	

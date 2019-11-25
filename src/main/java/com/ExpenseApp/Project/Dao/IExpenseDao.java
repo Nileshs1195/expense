@@ -14,6 +14,6 @@ public interface IExpenseDao
 
 	List<Object> getMonthlyExpense();
 
-	//List<Object> getUsersMonthlyExpense(Integer id);
+	List<Object> getUsersMonthlyExpense(Integer id);
 	
 }

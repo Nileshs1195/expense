@@ -44,7 +44,12 @@ public class ExpenseController
 	{
 		return new ResponseEntity<List<Expense>> (expenseService.getExpenseList(expense),HttpStatus.OK);
 	}
-	
+		
+	/**
+	 * Method used to fetch ExpenseList of specific user
+	 * @param Integer id 
+	 * @return Expense List
+	 */
 	@GetMapping("/expenseList/{id}")
 	public ResponseEntity<Expense> getExpense(@PathVariable Integer id)
 	{
@@ -58,17 +63,26 @@ public class ExpenseController
 		}
 	}
 	
+	/**
+	 * Method used to fetch All Users Expenses
+	 * @param  
+	 * @return Expense List
+	 */
 	@GetMapping("/monthlyExpense")
 	public ResponseEntity<List<Object>> getMonthlyExpense()
 	{
 		return new ResponseEntity<List<Object>>(expenseService.getMonthlyExpense(),HttpStatus.OK);
 	}
 	
-
-//	@GetMapping("/monthlyExpenseByUser")
-//	public List<Object> getUsersMonthlyExpense(Integer id)
-//	{
-//		return (List<Object>) new ResponseEntity<List<Object>>(expenseService.getUsersMonthlyExpense(id),HttpStatus.OK);
-//	}
+	/**
+	 * Method used to display monthly expense amount of specific user
+	 * @param Integer id 
+	 * @return Expense Amount List
+	 */
+	@GetMapping("/monthlyExpense/{id}")
+	public ResponseEntity<List<Object>> getUsersMonthlyExpense(@PathVariable("id") Integer id)
+	{
+		return new ResponseEntity<List<Object>>(expenseService.getUsersMonthlyExpense(id),HttpStatus.OK);
+	}
 
 }

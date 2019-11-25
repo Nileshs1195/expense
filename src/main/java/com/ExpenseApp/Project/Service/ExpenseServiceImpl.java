@@ -45,8 +45,8 @@ public class ExpenseServiceImpl implements IExpenseService
 		return expenseDao.getMonthlyExpense();
 	}
 
-//	@Override
-//	public List<Object> getUsersMonthlyExpense(Integer id) {
-//		return expenseDao.getUsersMonthlyExpense(id);
-//	}
+	@Override
+	public List<Object> getUsersMonthlyExpense(Integer id) {
+		return expenseDao.getUsersMonthlyExpense(id);
+	}
 }
