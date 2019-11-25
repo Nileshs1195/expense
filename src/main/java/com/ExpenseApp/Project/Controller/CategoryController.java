@@ -41,7 +41,6 @@ public class CategoryController
 		return new ResponseEntity<String>(categoryService.addCategory(categorydto),HttpStatus.OK);
 	} 
 	
-	
 	/**
 	 * Method used get Category List 
 	 * @param No parameter
