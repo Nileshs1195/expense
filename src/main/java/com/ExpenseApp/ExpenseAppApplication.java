@@ -27,7 +27,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class ExpenseAppApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ExpenseAppApplication.class, args);
-		
+		SpringApplication.run(ExpenseAppApplication.class, args);	
 	}
 }
